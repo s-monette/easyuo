@@ -1,0 +1,45 @@
+initevents
+
+set %backpack QIZWJMD
+set %regent_chest VYBTJMD
+set %ores_bag BFBTJMD
+set %ingots_bag XUSTJMD
+
+gosub grab_drop_regent
+while %ores > 0
+{
+  finditem DWJ C_ . %backpack
+  set #lobjectid #findid
+  event macro 17 0
+
+  gosub grab_drop_regent
+  wait 1s
+}
+
+halt
+
+; === Sub ===
+sub grab_drop_regent
+    ; drop ingots
+    finditem RMK_TMK_XMK C_ . %backpack
+    repeat
+    {
+     	Exevent Drag #findid #FINDSTACK
+     	wait 1
+      Exevent Dropc %ingots_bag
+      wait 1
+      finditem RMK C_ . %backpack
+    }
+    until #FINDSTACK = 0
+
+    ; grab ores
+    finditem DWJ C_ . %ores_bag
+    set %ores #FINDSTACK
+    if #FINDSTACK > 1
+    {
+     	Exevent Drag #findid 1000
+     	wait 1
+      Exevent Dropc %backpack
+      wait 1
+    }
+return

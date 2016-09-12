@@ -1,0 +1,246 @@
+; ---- Variables declaration ----
+set %pickaxe NLZWJMD
+set %door MOURJMD
+set %chest VYBTJMD
+set %runebook WKXDKMD
+set %runeTmp KQGUJMD
+set %targetbag BFBTJMD
+set %Home 1 ; Rune number for home
+set %Mine 3 ; Rune number for mine
+set %maxweight 450
+set %jindex #jindex
+set %time #SYSTIME
+set %recallCount 0
+set %authorization #true
+tile init
+set %lastcount 0
+
+; ---- Main loop ----
+gosub recallBook %Mine
+start:
+    if #weight >= %maxweight
+    {
+        gosub runeSpell 44 ; Mark rune
+        gosub recallBook %Home
+        gosub useItem %door
+        gosub useItem %chest
+        gosub moveOres
+        gosub runeSpell 31 ; recall rune
+    }
+    gosub mine
+    gosub check_disconnect
+goto start
+
+; ---- sub fonctions ----
+sub check_disconnect
+    if #contkind = ECTB && #contname = waiting_gump
+    {
+        repeat
+        {
+            wait 1s
+            key enter
+            wait 1s
+            click 620 450
+        }
+        until #clilogged = 1
+    }
+return
+
+sub check_stuck
+    if #CHARPOSX = %lastx && #CHARPOSY = %lasty
+    {
+        set %lastcount %lastcount + 1
+        if %lastcount = 5
+        {
+            gosub recallBook %Mine
+        }
+    }
+    else
+    {
+        set %lastx #CHARPOSX
+        set %lasty #CHARPOSY
+        set %lastcount 0
+    }
+return
+
+sub mine
+    gosub journalcheck
+
+    if %authorization
+    {
+        set %x #CharPosX
+        set %y #CharPosY
+        tile cnt %x %y
+        for %layer 0 #tilecnt
+        {
+            tile get %x %y %layer
+        }
+        if %layer = 1
+        {
+            set #LTargetKind 2
+        }
+        else
+        {
+            set #LTargetKind 3
+        }
+        set #LTargetX #CharPosX
+        set #LTargetY #CharPosY
+        set #LTargetZ #CharPosZ
+        set #LObjectID %pickaxe
+        event macro 17
+        target 5s
+        event macro 22
+        set %authorization #false
+        set %time #systime
+    }
+return
+
+sub journalcheck {
+    while #jindex > %jindex
+    {
+        set %jindex %jindex + 1
+        scanjournal %jindex
+        if there_is_nothing_here_to_mine in #journal || you_can't_mine_that in #journal
+        {
+            set %jindex #jindex
+            gosub move
+            return
+        }
+        if you_put_the in #journal || you_loosen_some_rocks_but_fail in #journal
+        {
+            set %authorization #true
+            set %jindex #jindex
+            return
+        }
+        if you_disturb_a_ore_golem in #journal
+        {
+            pause
+            return
+        }
+        if try_mining_elsewhere in #journal
+        {
+            gosub recallBook %Mine
+        }
+    }
+
+    if #systime > %time + 20000
+    {
+        event sysmessage Timeout
+        set %authorization #true
+    }
+return
+
+sub move
+    gosub check_stuck
+    East:
+        if %move = 1
+        {
+            goto West
+        }
+        set %CharPosX #CharPosX + 1
+        move %CharPosX #CharPosY 0 2s
+        if %CharPosX > #CharPosX
+        {
+            set %move 1
+            goto South
+        }
+        set %authorization #true
+    return
+
+    South:
+        set %CharPosY #CharPosY + 1
+        move #CharPosX %CharPosY 0 2s
+        set %authorization #true
+    return
+
+    West:
+        if %move <> 1
+        {
+            goto East
+        }
+        set %CharPosX #CharPosX - 1
+        move %CharPosX #CharPosY 0 2s
+        if %CharPosX < #CharPosX
+        {
+            set %move 0
+            goto South
+        }
+        set %authorization #true
+return
+
+sub moveOres
+    check:
+        finditem DWJ_EWJ_GWJ c_
+        if ! #findkind
+        {
+            set #findindex %tmp
+            Exevent Drag #findid #findstack
+            wait 10
+            exevent dropc %targetbag
+            wait 10
+            goto check
+        }
+        wait 2s
+return
+
+sub runeSpell
+    repeat
+    {
+        gosub meditate
+        set #LTARGETID %runeTmp
+        set #LTARGETKIND 1
+        event macro 15 %1
+        wait 10
+        event macro 22 0
+        wait 10s
+        gosub checkFizzle
+    }
+    until #result = 1
+return
+
+sub useItem
+    set #lobjectid %1
+    event macro 17 0
+    wait 5
+return
+
+sub checkFizzle
+    while #jindex > %jindex {
+        set %jindex %jindex + 1
+        scanjournal %jindex
+        if the_spell_fizzle in #journal
+        {
+            wait 10
+            return 0
+        }
+    }
+return 1
+
+sub recallBook
+    wait 5s
+    set %bookYoffset 55
+    set %y 15 * %1 + %bookYoffset
+        repeat
+        {
+            gosub meditate
+            set #LTARGETKIND 0
+            gosub useItem %runebook
+            set #contPosX 0
+            set #contPosY 0
+            contpos
+            wait 5
+            click 135 %y
+            wait 5s
+            gosub checkFizzle
+        }
+        until #result = 1
+return
+
+sub meditate
+    while #mana < 100
+    {
+        event macro 13 46
+        wait 3s
+    }
+return
+

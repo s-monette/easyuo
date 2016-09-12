@@ -1,0 +1,216 @@
+;============   SETUP   ===================
+initevents
+
+set %rune1 CSQTJMD
+set %rune2 TRQTJMD
+set %rune3 WOQTJMD
+set %rune4 EPQTJMD
+set %rune5 WZODKMD
+set %rune6 BTODKMD
+set %rune7 MRODKMD
+set %rune8 IRGDKMD
+set %rune9 WQGDKMD
+set %rune10 SDICKMD
+
+set %daggerID XJOUJMD
+set %bag QIZWJMD
+
+set %door MOURJMD
+set %chest VYBTJMD
+set %runebook WKXDKMD
+set %targetbag BFBTJMD
+set %Home 1 ; Rune number for home
+set %maxweight 600
+
+;============   Main   ===================
+for %i 1 10
+{
+gosub meditate
+  gosub check_weight
+  
+  set %lastx #CHARPOSX
+
+  repeat
+  {
+    set %jindex #jindex
+    set %timeout #time + 15
+    set #ltargetid %rune . %i
+    event macro 15 31
+    target
+    event macro 22 0
+    wait 3s
+    gosub checkFizzle
+  }
+  until #result = 1
+
+  while #CHARPOSX = %lastx && #time < %timeout
+  {
+     wait 1
+  }
+
+  gosub scan_sheep
+}
+
+;============   SUBROUTINES   ===================
+sub scan_sheep
+  repeat
+  {
+    finditem YFM G_2
+    set %corps_cnt #FINDCNT
+
+    finditem FG G_20
+    set %lamb_cnt #FINDCNT
+
+    finditem PF G_50
+    set %sheep_cnt #FINDCNT
+
+    if %corps_cnt > 0
+    {
+       gosub move_nearest YFM G_2 2
+       gosub skin
+    }
+    if %lamb_cnt > 0 && %corps_cnt = 0
+    {
+      gosub move_nearest FG G_20 1
+      gosub kill_melee
+    }
+
+    if %sheep_cnt > 0 && %lamb_cnt = 0 && %corps_cnt = 0
+    {
+      gosub move_nearest PF G_50 2
+      gosub sheer
+    }
+
+    wait 10
+  }
+  until %corps_cnt = 0 && %lamb_cnt = 0 && %sheep_cnt = 0
+return
+
+sub sheer
+  set %sheepID #findid
+  set #lobjectid %daggerID
+  event macro 17
+  target
+  wait 10
+  set #ltargetid %sheepID
+  set #ltargetkind 1
+  event macro 22
+return
+
+sub kill_melee
+  set %sheepID #findid
+  set #ltargetid %sheepID
+  event macro 27
+return
+
+sub skin
+    gosub sheer
+    set #lobjectid %sheepID
+    event macro 17 0
+    wait 3
+    repeat
+    {
+       finditem OFF C_ . %sheepID
+       Exevent Drag #findid #findstack
+	     wait 3
+	     Exevent Dropc %bag
+    }
+    until #FINDCNT = 0
+    HideItem %sheepID
+return
+
+sub move_nearest
+; %1=type %2=scan_range %3=move_distance
+  finditem %1 %2      ;<-- find cotton
+  set %idx 0                ;<-- set index to 0
+  set %dist %2             ;<-- set dist to insanely far
+  for #findindex 1 #findcnt ;<-- loop through every found cotton
+  {
+    if #finddist >= %dist ;<-- if it's the same distance or farther
+       continue           ;<-- then go to the next one
+    set %idx #findindex   ;<-- if it's closer, then remember the index number
+    set %dist #finddist   ;<-- and set the new closest dist
+  }
+  set #findindex %idx       ;<-- go back to the closest one
+
+ if #FINDDIST < 80
+    move #findx #findy %3    ;<-- move to it
+  }
+return
+
+sub checkFizzle
+    while #jindex > %jindex {
+        set %jindex %jindex + 1
+        scanjournal %jindex
+        if the_spell_fizzle in #journal
+        {
+            wait 10
+            return 0
+        }
+    }
+return 1
+
+sub meditate
+  if g in #charstatus
+     event macro 6 0
+
+  if #mana < 50
+  {
+    while #mana < 144
+    {
+        event macro 13 46
+        wait 3s
+    }
+  }
+return
+
+sub recallBook
+    wait 5s
+    set %bookYoffset 55
+    set %y 15 * %1 + %bookYoffset
+        repeat
+        {
+            gosub meditate
+            ;set #LTARGETKIND 0
+            gosub useItem %runebook
+            set #contPosX 0
+            set #contPosY 0
+            contpos
+            wait 5
+            click 135 %y
+            wait 5s
+            gosub checkFizzle
+        }
+        until #result = 1
+return
+
+sub check_weight
+    if #weight >= %maxweight
+    {
+        gosub recallBook %Home
+        gosub useItem %door
+        gosub useItem %chest
+        gosub moveWool
+    }
+return
+
+sub moveWool
+    check:
+        finditem OFF c_
+        if ! #findkind
+        {
+            set #findindex %tmp
+            Exevent Drag #findid #findstack
+            wait 10
+            exevent dropc %targetbag
+            wait 10
+            goto check
+        }
+        wait 2s
+return
+
+sub useItem
+    set #lobjectid %1
+    event macro 17 0
+    wait 5
+return

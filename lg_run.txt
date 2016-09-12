@@ -1,0 +1,1035 @@
+==================================
+; Script Name:  Lumberjacking Complete Rail Macro
+; Author: Janus
+; Version: 1.1
+; Client Tested with: 4.0.0a
+; EUO version tested with: 1.35 Build 000A
+; Shard OSI / FS: FS, Crystalgate
+; Revision Date: 01/17/04
+; Public Release: 01/17/04
+; Purpose: Lumberjack a Route without click commands
+;==================================
+initevents
+
+set %ljtool ILZWJMD ; set your ljtool here
+set %door MOURJMD
+set %chest VYBTJMD
+set %runebook WKXDKMD
+set %runeTmp KQGUJMD
+set %targetbag BFBTJMD
+set %Home 1 ; Rune number for home
+set %Mine 2 ; Rune number for mine
+set %maxweight 400
+
+start:
+ gosub recallBook %Mine
+
+ gosub ljing 1040 2319 5 3294
+ gosub ljing 1052 2319 5 3297
+ gosub ljing 1056 2319 5 3294
+ gosub ljing 1060 2319 5 3303
+ gosub ljing 1080 2319 5 3294
+ gosub ljing 1084 2319 5 3297
+ gosub ljing 1088 2319 5 3300
+ gosub ljing 1096 2319 5 3300
+ gosub ljing 1104 2319 0 3278
+ gosub ljing 1116 2319 0 3303
+ gosub ljing 1132 2319 0 3278
+ gosub ljing 1136 2319 0 3294
+ gosub ljing 1140 2319 0 3284
+ gosub ljing 1152 2319 5 3297
+ gosub ljing 1156 2319 5 3291
+ gosub ljing 1164 2319 5 3284
+ gosub ljing 1168 2319 5 3303
+ gosub ljing 1176 2319 5 3303
+
+ gosub ljing 1168 2322 0 3278
+ gosub ljing 1160 2322 0 3300
+ gosub ljing 1148 2322 0 3281
+ gosub ljing 1140 2322 0 3291
+ gosub ljing 1136 2322 0 3300
+ gosub ljing 1128 2322 0 3294
+ gosub ljing 1124 2322 0 3297
+ gosub ljing 1108 2322 0 3297
+ gosub ljing 1104 2322 0 3284
+ gosub ljing 1088 2322 5 3297
+ gosub ljing 1081 2322 5 3230
+ gosub ljing 1072 2322 5 3300
+ gosub ljing 1064 2322 5 3300
+ gosub ljing 1056 2322 5 3281
+ gosub ljing 1044 2322 5 3281
+
+ gosub ljing 1040 2325 5 3281
+ gosub ljing 1052 2325 5 3297
+ gosub ljing 1056 2325 5 3294
+ gosub ljing 1060 2325 5 3281
+ gosub ljing 1064 2325 5 3300
+ gosub ljing 1076 2325 5 3303
+ gosub ljing 1092 2325 5 3294
+ gosub ljing 1096 2325 5 3278
+ gosub ljing 1100 2325 0 3291
+ gosub ljing 1104 2325 0 3303
+ gosub ljing 1116 2325 0 3284
+ gosub ljing 1124 2325 0 3281
+ gosub ljing 1128 2325 0 3294
+ gosub ljing 1132 2325 0 3281
+ gosub ljing 1140 2325 0 3297
+ gosub ljing 1144 2325 0 3278
+ gosub ljing 1156 2325 0 3291
+ gosub ljing 1160 2325 0 3300
+ gosub ljing 1176 2325 0 3303
+
+ gosub ljing 1172 2328 0 3291
+ gosub ljing 1168 2328 0 3303
+ gosub ljing 1160 2328 0 3300
+ gosub ljing 1152 2328 0 3300
+ gosub ljing 1148 2328 0 3297
+ gosub ljing 1132 2328 0 3291
+ gosub ljing 1128 2328 0 3300
+ gosub ljing 1120 2328 0 3291
+ gosub ljing 1104 2328 0 3278
+ gosub ljing 1096 2328 5 3284
+ gosub ljing 1092 2328 5 3294
+ gosub ljing 1076 2328 5 3297
+ gosub ljing 1068 2328 5 3294
+ gosub ljing 1056 2328 5 3303
+ gosub ljing 1052 2328 5 3291
+ gosub ljing 1040 2328 5 3291
+
+ gosub ljing 1040 2331 5 3303
+ gosub ljing 1049 2331 5 3230
+ gosub ljing 1052 2331 5 3294
+ gosub ljing 1056 2331 5 3300
+ gosub ljing 1068 2331 5 3303
+ gosub ljing 1072 2331 5 3281
+ gosub ljing 1076 2331 5 3291
+ gosub ljing 1080 2331 5 3300
+ gosub ljing 1092 2331 5 3291
+ gosub ljing 1104 2331 0 3300
+ gosub ljing 1108 2331 0 3291
+ gosub ljing 1128 2331 0 3297
+ gosub ljing 1136 2331 0 3300
+ gosub ljing 1148 2331 0 3284
+ gosub ljing 1156 2331 0 3303
+ gosub ljing 1160 2331 0 3284
+ gosub ljing 1176 2331 0 3303
+
+ gosub ljing 1176 2334 0 3291
+ gosub ljing 1168 2334 0 3281
+ gosub ljing 1164 2334 0 3300
+ gosub ljing 1160 2334 0 3278
+ gosub ljing 1156 2334 0 3297
+ gosub ljing 1144 2334 0 3284
+ gosub ljing 1136 2334 0 3278
+ gosub ljing 1104 2334 0 3297
+ gosub ljing 1100 2334 0 3297
+ gosub ljing 1092 2334 5 3294
+ gosub ljing 1088 2334 5 3281
+ gosub ljing 1084 2334 5 3303
+ gosub ljing 1076 2334 5 3284
+ gosub ljing 1068 2334 5 3294
+ gosub ljing 1064 2334 5 3291
+ gosub ljing 1048 2334 5 3284
+ gosub ljing 1044 2334 5 3300
+
+ gosub ljing 1048 2337 5 3278
+ gosub ljing 1052 2337 5 3294
+ gosub ljing 1068 2337 5 3284
+ gosub ljing 1076 2337 5 3278
+ gosub ljing 1080 2337 5 3297
+ gosub ljing 1084 2337 5 3281
+ gosub ljing 1100 2337 0 3297
+ gosub ljing 1108 2337 0 3284
+ gosub ljing 1116 2337 0 3294
+ gosub ljing 1124 2337 0 3281
+ gosub ljing 1128 2337 0 3281
+ gosub ljing 1132 2337 0 3281
+ gosub ljing 1140 2337 5 3281
+ gosub ljing 1144 2337 5 3294
+ gosub ljing 1156 2337 0 3291
+ gosub ljing 1164 2337 0 3291
+ gosub ljing 1172 2337 0 3303
+
+ gosub ljing 1172 2340 0 3281
+ gosub ljing 1164 2340 0 3303
+ gosub ljing 1156 2340 1 3291
+ gosub ljing 1152 2340 5 3281
+ gosub ljing 1148 2340 5 3278
+ gosub ljing 1140 2340 5 3297
+ gosub ljing 1132 2340 5 3300
+ gosub ljing 1120 2340 0 3284
+ gosub ljing 1116 2340 0 3303
+ gosub ljing 1112 2340 0 3297
+ gosub ljing 1096 2340 0 3303
+ gosub ljing 1094 2340 0 3230
+ gosub ljing 1092 2340 0 3294
+ gosub ljing 1084 2340 5 3284
+ gosub ljing 1076 2340 5 3300
+ gosub ljing 1068 2340 5 3294
+ gosub ljing 1052 2340 5 3284
+ gosub ljing 1048 2340 5 3291
+ gosub ljing 1042 2340 5 3230
+ gosub ljing 1040 2340 5 3294
+
+ gosub ljing 1040 2343 5 3291
+ gosub ljing 1044 2343 5 3291
+ gosub ljing 1052 2343 5 3297
+ gosub ljing 1072 2343 5 3284
+ gosub ljing 1080 2343 5 3294
+ gosub ljing 1092 2343 0 3300
+ gosub ljing 1096 2343 0 3284
+ gosub ljing 1100 2343 0 3291
+ gosub ljing 1112 2343 0 3284
+ gosub ljing 1116 2343 0 3278
+ gosub ljing 1120 2343 0 3303
+ gosub ljing 1132 2343 5 3303
+ gosub ljing 1148 2343 5 3291
+ gosub ljing 1152 2343 5 3278
+ gosub ljing 1156 2343 5 3303
+ gosub ljing 1160 2343 5 3278
+ gosub ljing 1164 2343 1 3297
+
+ gosub ljing 1168 2346 5 3281
+ gosub ljing 1165 2346 5 3230
+ gosub ljing 1160 2346 5 3294
+ gosub ljing 1152 2346 5 3294
+ gosub ljing 1144 2346 5 3300
+ gosub ljing 1140 2346 5 3278
+ gosub ljing 1124 2346 0 3291
+ gosub ljing 1120 2346 0 3281
+ gosub ljing 1112 2346 0 3281
+ gosub ljing 1108 2346 0 3291
+ gosub ljing 1100 2346 0 3278
+ gosub ljing 1084 2346 0 3278
+ gosub ljing 1080 2346 1 3281
+ gosub ljing 1076 2346 5 3284
+ gosub ljing 1072 2346 5 3278
+ gosub ljing 1044 2346 5 3278
+
+ gosub ljing 1040 2349 5 3294
+ gosub ljing 1044 2349 5 3303
+ gosub ljing 1048 2349 5 3278
+ gosub ljing 1056 2349 5 3300
+ gosub ljing 1076 2349 5 3303
+ gosub ljing 1080 2349 0 3291
+ gosub ljing 1092 2349 0 3297
+ gosub ljing 1100 2349 0 3278
+ gosub ljing 1104 2349 0 3281
+ gosub ljing 1120 2349 0 3291
+ gosub ljing 1124 2349 0 3300
+ gosub ljing 1128 2349 0 3300
+ gosub ljing 1132 2349 5 3281
+ gosub ljing 1136 2349 5 3291
+ gosub ljing 1140 2349 5 3303
+ gosub ljing 1152 2349 5 3284
+ gosub ljing 1160 2349 5 3278
+ gosub ljing 1164 2349 5 3281
+ gosub ljing 1172 2349 5 3281
+
+ gosub ljing 1176 2352 5 3303
+ gosub ljing 1168 2352 5 3291
+ gosub ljing 1164 2352 5 3300
+ gosub ljing 1160 2352 5 3303
+ gosub ljing 1156 2352 5 3284
+ gosub ljing 1148 2352 5 3281
+ gosub ljing 1144 2352 5 3284
+ gosub ljing 1136 2352 5 3297
+ gosub ljing 1128 2352 0 3294
+ gosub ljing 1124 2352 0 3291
+ gosub ljing 1120 2352 0 3297
+ gosub ljing 1104 2352 0 3291
+ gosub ljing 1096 2352 0 3284
+ gosub ljing 1092 2352 0 3294
+ gosub ljing 1088 2352 0 3281
+ gosub ljing 1076 2352 5 3300
+ gosub ljing 1072 2352 5 3284
+ gosub ljing 1068 2352 5 3303
+ gosub ljing 1048 2352 5 3303
+
+ gosub ljing 1052 2355 5 3281
+ gosub ljing 1056 2355 5 3291
+ gosub ljing 1072 2355 5 3291
+ gosub ljing 1076 2355 0 3284
+ gosub ljing 1080 2355 0 3300
+ gosub ljing 1088 2355 0 3297
+ gosub ljing 1096 2355 0 3281
+ gosub ljing 1104 2355 0 3303
+ gosub ljing 1120 2355 0 3284
+ gosub ljing 1124 2355 0 3297
+ gosub ljing 1128 2355 0 3284
+ gosub ljing 1132 2355 0 3297
+ gosub ljing 1144 2355 5 3278
+ gosub ljing 1152 2355 5 3300
+ gosub ljing 1160 2355 5 3300
+ gosub ljing 1172 2355 5 3300
+ gosub ljing 1176 2355 5 3294
+
+ gosub ljing 1172 2358 5 3230
+ gosub ljing 1168 2358 5 3281
+ gosub ljing 1164 2358 5 3294
+ gosub ljing 1160 2358 5 3297
+ gosub ljing 1156 2358 5 3297
+ gosub ljing 1152 2358 5 3294
+ gosub ljing 1148 2358 5 3281
+ gosub ljing 1140 2358 5 3300
+ gosub ljing 1132 2358 0 3297
+ gosub ljing 1124 2358 0 3291
+ gosub ljing 1116 2358 0 3281
+ gosub ljing 1108 2358 0 3281
+ gosub ljing 1100 2358 0 3284
+ gosub ljing 1096 2358 0 3297
+ gosub ljing 1092 2358 0 3297
+ gosub ljing 1088 2358 0 3300
+ gosub ljing 1084 2358 0 3291
+ gosub ljing 1072 2358 5 3281
+ gosub ljing 1060 2358 5 3297
+ gosub ljing 1052 2358 5 3303
+ gosub ljing 1044 2358 5 3303
+
+ gosub ljing 1060 2361 5 3278
+ gosub ljing 1072 2361 0 3294
+ gosub ljing 1076 2361 0 3294
+ gosub ljing 1080 2361 0 3278
+ gosub ljing 1088 2361 0 3297
+ gosub ljing 1092 2361 0 3281
+ gosub ljing 1104 2361 0 3294
+ gosub ljing 1108 2361 0 3297
+ gosub ljing 1120 2361 0 3281
+ gosub ljing 1124 2361 0 3284
+ gosub ljing 1136 2361 5 3281
+ gosub ljing 1140 2361 5 3300
+ gosub ljing 1148 2361 5 3300
+ gosub ljing 1154 2361 5 3230
+ gosub ljing 1164 2361 5 3303
+ gosub ljing 1176 2361 5 3291
+
+ gosub ljing 1176 2364 5 3278
+ gosub ljing 1172 2364 5 3294
+ gosub ljing 1168 2364 5 3291
+ gosub ljing 1148 2364 5 3284
+ gosub ljing 1144 2364 5 3303
+ gosub ljing 1140 2364 5 3303
+ gosub ljing 1128 2364 0 3291
+ gosub ljing 1120 2364 0 3300
+ gosub ljing 1116 2364 0 3291
+ gosub ljing 1112 2364 0 3291
+ gosub ljing 1104 2364 0 3281
+ gosub ljing 1100 2364 0 3291
+ gosub ljing 1096 2364 0 3281
+ gosub ljing 1088 2364 0 3303
+ gosub ljing 1076 2364 0 3297
+ gosub ljing 1068 2364 0 3300
+ gosub ljing 1056 2364 5 3281
+ gosub ljing 1048 2364 5 3303
+ gosub ljing 1044 2364 0 3281
+ gosub ljing 1040 2364 0 3284
+
+ gosub ljing 1040 2367 0 3278
+ gosub ljing 1048 2367 0 3303
+ gosub ljing 1052 2367 0 3281
+ gosub ljing 1060 2367 0 3281
+ gosub ljing 1068 2367 0 3297
+ gosub ljing 1072 2367 0 3294
+ gosub ljing 1080 2367 0 3303
+ gosub ljing 1088 2367 0 3294
+ gosub ljing 1096 2367 0 3297
+ gosub ljing 1104 2367 0 3297
+ gosub ljing 1108 2367 0 3281
+ gosub ljing 1112 2367 0 3278
+ gosub ljing 1120 2367 0 3300
+ gosub ljing 1136 2367 0 3284
+ gosub ljing 1148 2367 5 3297
+ gosub ljing 1156 2367 5 3281
+ gosub ljing 1160 2367 5 3291
+ gosub ljing 1164 2367 5 3281
+ gosub ljing 1168 2367 5 3300
+ gosub ljing 1176 2367 5 3281
+
+ gosub ljing 1160 2370 5 3281
+ gosub ljing 1156 2370 1 3291
+ gosub ljing 1148 2370 0 3281
+ gosub ljing 1140 2370 0 3281
+ gosub ljing 1116 2370 0 3300
+ gosub ljing 1104 2370 0 3300
+ gosub ljing 1096 2370 0 3291
+ gosub ljing 1084 2370 0 3294
+ gosub ljing 1072 2370 0 3297
+ gosub ljing 1064 2370 0 3284
+ gosub ljing 1060 2370 0 3300
+
+ gosub ljing 1040 2373 0 3303
+ gosub ljing 1048 2373 0 3297
+ gosub ljing 1060 2373 0 3297
+ gosub ljing 1072 2373 0 3278
+ gosub ljing 1088 2373 0 3278
+ gosub ljing 1092 2373 0 3297
+ gosub ljing 1096 2373 0 3284
+ gosub ljing 1112 2373 0 3297
+ gosub ljing 1116 2373 0 3294
+ gosub ljing 1120 2373 0 3303
+ gosub ljing 1124 2373 0 3281
+ gosub ljing 1128 2373 0 3291
+ gosub ljing 1132 2373 0 3278
+ gosub ljing 1136 2373 0 3303
+ gosub ljing 1148 2373 0 3297
+ gosub ljing 1152 2373 0 3300
+ gosub ljing 1156 2373 0 3294
+ gosub ljing 1160 2373 0 3281
+ gosub ljing 1164 2373 0 3291
+ gosub ljing 1172 2373 5 3303
+ gosub ljing 1176 2373 5 3297
+
+ gosub ljing 1176 2376 1 3278
+ gosub ljing 1164 2376 0 3303
+ gosub ljing 1156 2376 0 3303
+ gosub ljing 1148 2376 0 3303
+ gosub ljing 1144 2376 0 3281
+ gosub ljing 1136 2376 0 3297
+ gosub ljing 1116 2376 0 3281
+ gosub ljing 1112 2376 0 3278
+ gosub ljing 1108 2376 0 3284
+ gosub ljing 1092 2376 0 3281
+ gosub ljing 1084 2376 0 3294
+ gosub ljing 1076 2376 0 3303
+ gosub ljing 1068 2376 0 3303
+ gosub ljing 1064 2376 0 3294
+ gosub ljing 1060 2376 0 3291
+ gosub ljing 1056 2376 0 3303
+ gosub ljing 1044 2376 0 3300
+
+ gosub ljing 1044 2379 0 3300
+ gosub ljing 1048 2379 0 3297
+ gosub ljing 1064 2379 0 3294
+ gosub ljing 1072 2379 0 3303
+ gosub ljing 1080 2379 0 3281
+ gosub ljing 1088 2379 0 3281
+ gosub ljing 1092 2379 0 3278
+ gosub ljing 1096 2379 0 3291
+ gosub ljing 1100 2379 0 3294
+ gosub ljing 1112 2379 0 3278
+ gosub ljing 1116 2379 0 3297
+ gosub ljing 1132 2379 0 3281
+ gosub ljing 1144 2379 0 3284
+ gosub ljing 1152 2379 0 3291
+ gosub ljing 1164 2379 0 3303
+ gosub ljing 1168 2379 0 3281
+ gosub ljing 1172 2379 0 3297
+ gosub ljing 1176 2379 0 3294
+
+ gosub ljing 1172 2382 0 3300
+ gosub ljing 1136 2382 0 3303
+ gosub ljing 1096 2382 0 3303
+ gosub ljing 1084 2382 0 3303
+ gosub ljing 1076 2382 0 3291
+ gosub ljing 1072 2382 0 3294
+ gosub ljing 1068 2382 0 3281
+ gosub ljing 1064 2382 0 3297
+ gosub ljing 1060 2382 0 3300
+ gosub ljing 1048 2382 0 3284
+
+ gosub ljing 1048 2385 0 3297
+ gosub ljing 1056 2385 0 3300
+ gosub ljing 1072 2385 0 3297
+ gosub ljing 1084 2385 0 3291
+ gosub ljing 1092 2385 0 3303
+ gosub ljing 1096 2385 0 3294
+ gosub ljing 1100 2385 0 3230
+ gosub ljing 1104 2385 0 3281
+ gosub ljing 1108 2385 0 3303
+ gosub ljing 1112 2385 0 3303
+ gosub ljing 1120 2385 0 3294
+ gosub ljing 1128 2385 0 3303
+ gosub ljing 1132 2385 0 3297
+ gosub ljing 1140 2385 0 3291
+ gosub ljing 1148 2385 0 3294
+ gosub ljing 1151 2385 0 3230
+ gosub ljing 1164 2385 0 3281
+ gosub ljing 1168 2385 0 3278
+ gosub ljing 1172 2385 0 3284
+ gosub ljing 1176 2385 0 3291
+
+ gosub ljing 1172 2388 0 3281
+ gosub ljing 1164 2388 0 3278
+ gosub ljing 1152 2388 0 3278
+ gosub ljing 1148 2388 0 3294
+ gosub ljing 1144 2388 0 3284
+ gosub ljing 1136 2388 0 3300
+ gosub ljing 1132 2388 1 3303
+ gosub ljing 1116 2388 5 3284
+ gosub ljing 1112 2388 5 3297
+ gosub ljing 1096 2388 0 3291
+ gosub ljing 1088 2388 0 3294
+ gosub ljing 1084 2388 0 3303
+ gosub ljing 1076 2388 0 3291
+ gosub ljing 1064 2388 0 3291
+ gosub ljing 1060 2388 0 3297
+ gosub ljing 1056 2388 0 3300
+ gosub ljing 1052 2388 0 3294
+
+ gosub ljing 1048 2391 0 3278
+ gosub ljing 1052 2391 0 3284
+ gosub ljing 1056 2391 0 3303
+ gosub ljing 1068 2391 0 3278
+ gosub ljing 1088 2391 0 3297
+ gosub ljing 1092 2391 0 3281
+ gosub ljing 1096 2391 0 3294
+ gosub ljing 1100 2391 5 3303
+ gosub ljing 1104 2391 5 3291
+ gosub ljing 1112 2391 5 3294
+ gosub ljing 1132 2391 5 3300
+ gosub ljing 1140 2391 0 3294
+ gosub ljing 1144 2391 0 3291
+ gosub ljing 1148 2391 0 3300
+ gosub ljing 1156 2391 0 3303
+ gosub ljing 1164 2391 0 3278
+
+ gosub ljing 1172 2394 0 3294
+ gosub ljing 1168 2394 0 3303
+ gosub ljing 1164 2394 0 3303
+ gosub ljing 1156 2394 0 3300
+ gosub ljing 1152 2394 0 3278
+ gosub ljing 1140 2394 0 3284
+ gosub ljing 1136 2394 5 3281
+ gosub ljing 1128 2394 5 3291
+ gosub ljing 1124 2394 5 3300
+ gosub ljing 1120 2394 5 3297
+ gosub ljing 1112 2394 5 3297
+ gosub ljing 1104 2394 5 3291
+ gosub ljing 1100 2394 5 3294
+ gosub ljing 1092 2394 0 3284
+ gosub ljing 1060 2394 0 3291
+ gosub ljing 1044 2394 0 3281
+ gosub ljing 1040 2394 0 3278
+
+ gosub ljing 1040 2397 0 3281
+ gosub ljing 1052 2397 0 3294
+ gosub ljing 1056 2397 0 3300
+ gosub ljing 1060 2397 0 3284
+ gosub ljing 1072 2397 0 3297
+ gosub ljing 1076 2397 0 3300
+ gosub ljing 1100 2397 5 3278
+ gosub ljing 1136 2397 5 3300
+ gosub ljing 1156 2397 0 3284
+ gosub ljing 1168 2397 3 3303
+ gosub ljing 1172 2397 0 3291
+
+ gosub ljing 1148 2400 0 3284
+ gosub ljing 1144 2400 0 3294
+ gosub ljing 1140 2400 5 3303
+ gosub ljing 1128 2400 5 3303
+ gosub ljing 1124 2400 5 3297
+ gosub ljing 1112 2400 5 3303
+ gosub ljing 1108 2400 5 3300
+ gosub ljing 1100 2400 5 3291
+ gosub ljing 1096 2400 5 3294
+ gosub ljing 1092 2400 5 3281
+ gosub ljing 1088 2400 0 3303
+ gosub ljing 1072 2400 0 3281
+ gosub ljing 1048 2400 0 3300
+ gosub ljing 1040 2400 0 3300
+
+ gosub ljing 1040 2403 0 3291
+ gosub ljing 1044 2403 0 3291
+ gosub ljing 1060 2403 0 3303
+ gosub ljing 1078 2403 0 3230
+ gosub ljing 1080 2403 0 3284
+ gosub ljing 1088 2403 2 3281
+ gosub ljing 1092 2403 5 3303
+ gosub ljing 1104 2403 5 3300
+ gosub ljing 1112 2403 5 3297
+ gosub ljing 1132 2403 5 3294
+ gosub ljing 1144 2403 0 3281
+ gosub ljing 1176 2403 0 3300
+
+ gosub ljing 1152 2406 0 3294
+ gosub ljing 1132 2406 5 3294
+ gosub ljing 1128 2406 5 3291
+ gosub ljing 1116 2406 5 3303
+ gosub ljing 1112 2406 5 3278
+ gosub ljing 1100 2406 5 3297
+ gosub ljing 1092 2406 5 3297
+ gosub ljing 1084 2406 0 3281
+ gosub ljing 1076 2406 0 3281
+ gosub ljing 1072 2406 0 3300
+ gosub ljing 1068 2406 0 3300
+ gosub ljing 1056 2406 0 3291
+ gosub ljing 1052 2406 0 3294
+ gosub ljing 1048 2406 0 3300
+ gosub ljing 1040 2406 0 3281
+
+ gosub ljing 1040 2409 0 3281
+ gosub ljing 1048 2409 0 3303
+ gosub ljing 1052 2409 0 3297
+ gosub ljing 1060 2409 0 3303
+ gosub ljing 1068 2409 0 3303
+ gosub ljing 1072 2409 0 3297
+ gosub ljing 1092 2409 5 3281
+ gosub ljing 1096 2409 5 3297
+ gosub ljing 1100 2409 5 3303
+ gosub ljing 1104 2409 5 3281
+ gosub ljing 1116 2409 5 3297
+ gosub ljing 1124 2409 5 3300
+ gosub ljing 1128 2409 5 3278
+ gosub ljing 1132 2409 5 3297
+ gosub ljing 1144 2409 0 3281
+ gosub ljing 1148 2409 0 3278
+ gosub ljing 1152 2409 0 3297
+ gosub ljing 1176 2409 0 3291
+
+ gosub ljing 1148 2412 0 3303
+ gosub ljing 1144 2412 0 3303
+ gosub ljing 1136 2412 5 3291
+ gosub ljing 1132 2412 5 3284
+ gosub ljing 1128 2412 5 3278
+ gosub ljing 1108 2412 5 3284
+ gosub ljing 1104 2412 5 3284
+ gosub ljing 1100 2412 5 3278
+ gosub ljing 1084 2412 5 3278
+ gosub ljing 1068 2412 0 3297
+ gosub ljing 1064 2412 0 3284
+
+ gosub ljing 1040 2415 5 3281
+ gosub ljing 1044 2415 5 3297
+ gosub ljing 1052 2415 0 3300
+ gosub ljing 1056 2415 0 3281
+ gosub ljing 1057 2415 0 3230
+ gosub ljing 1068 2415 0 3291
+ gosub ljing 1072 2415 0 3297
+ gosub ljing 1096 2415 5 3284
+ gosub ljing 1108 2415 5 3291
+ gosub ljing 1116 2415 5 3297
+ gosub ljing 1120 2415 5 3303
+ gosub ljing 1128 2415 5 3278
+ gosub ljing 1144 2415 0 3303
+ gosub ljing 1148 2415 0 3303
+
+ gosub ljing 1152 2418 0 3303
+ gosub ljing 1136 2418 5 3297
+ gosub ljing 1128 2418 5 3297
+ gosub ljing 1124 2418 5 3300
+ gosub ljing 1100 2418 5 3297
+ gosub ljing 1084 2418 5 3281
+ gosub ljing 1080 2418 5 3300
+ gosub ljing 1072 2418 0 3278
+ gosub ljing 1056 2418 0 3297
+ gosub ljing 1048 2418 5 3300
+ gosub ljing 1044 2418 5 3303
+
+ gosub ljing 1048 2421 5 3300
+ gosub ljing 1060 2421 0 3294
+ gosub ljing 1064 2421 0 3291
+ gosub ljing 1072 2421 0 3284
+ gosub ljing 1076 2421 5 3284
+ gosub ljing 1080 2421 5 3300
+ gosub ljing 1088 2421 5 3284
+ gosub ljing 1096 2421 10 3294
+ gosub ljing 1100 2421 10 3294
+ gosub ljing 1116 2421 10 3297
+ gosub ljing 1124 2421 5 3300
+ gosub ljing 1128 2421 5 3297
+ gosub ljing 1136 2421 5 3294
+ gosub ljing 1140 2421 5 3284
+ gosub ljing 1144 2421 0 3284
+
+ gosub ljing 1152 2424 0 3303
+ gosub ljing 1148 2424 0 3300
+ gosub ljing 1136 2424 5 3291
+ gosub ljing 1124 2424 5 3284
+ gosub ljing 1120 2424 5 3291
+ gosub ljing 1104 2424 10 3284
+ gosub ljing 1096 2424 10 3300
+ gosub ljing 1092 2424 5 3297
+ gosub ljing 1088 2424 5 3297
+ gosub ljing 1084 2424 5 3281
+ gosub ljing 1080 2424 5 3300
+ gosub ljing 1072 2424 5 3297
+ gosub ljing 1064 2424 0 3300
+ gosub ljing 1048 2424 5 3284
+ gosub ljing 1040 2424 5 3278
+
+ gosub ljing 1052 2427 0 3303
+ gosub ljing 1056 2427 0 3281
+ gosub ljing 1076 2427 5 3294
+ gosub ljing 1084 2427 5 3303
+ gosub ljing 1088 2427 5 3278
+ gosub ljing 1096 2427 10 3281
+ gosub ljing 1100 2427 10 3294
+ gosub ljing 1120 2427 5 3294
+ gosub ljing 1136 2427 5 3294
+ gosub ljing 1140 2427 5 3297
+ gosub ljing 1156 2427 0 3294
+ gosub ljing 1157 2427 0 3230
+ gosub ljing 1164 2427 0 3278
+ gosub ljing 1168 2427 0 3284
+
+ gosub ljing 1168 2430 0 3284
+ gosub ljing 1160 2430 0 3291
+ gosub ljing 1156 2430 0 3297
+ gosub ljing 1152 2430 0 3281
+ gosub ljing 1144 2430 0 3300
+ gosub ljing 1140 2430 5 3294
+ gosub ljing 1136 2430 5 3291
+ gosub ljing 1132 2430 5 3300
+ gosub ljing 1124 2430 5 3284
+ gosub ljing 1120 2430 5 3278
+ gosub ljing 1116 2430 10 3294
+ gosub ljing 1112 2430 10 3297
+ gosub ljing 1108 2430 10 3278
+ gosub ljing 1103 2430 10 3230
+ gosub ljing 1100 2430 10 3278
+ gosub ljing 1096 2430 10 3300
+ gosub ljing 1092 2430 5 3297
+ gosub ljing 1084 2430 5 3303
+ gosub ljing 1080 2430 5 3294
+ gosub ljing 1072 2430 5 3303
+ gosub ljing 1068 2430 0 3284
+ gosub ljing 1052 2430 0 3278
+ gosub ljing 1048 2430 0 3291
+ gosub ljing 1044 2430 5 3294
+ gosub ljing 1040 2430 5 3300
+
+ gosub ljing 1044 2433 5 3294
+ gosub ljing 1060 2433 0 3294
+ gosub ljing 1068 2433 0 3291
+ gosub ljing 1072 2433 5 3303
+ gosub ljing 1076 2433 5 3297
+ gosub ljing 1092 2433 5 3278
+ gosub ljing 1100 2433 10 3291
+ gosub ljing 1108 2433 10 3291
+ gosub ljing 1120 2433 5 3278
+ gosub ljing 1128 2433 5 3297
+ gosub ljing 1132 2433 5 3294
+ gosub ljing 1140 2433 5 3284
+ gosub ljing 1148 2433 0 3303
+ gosub ljing 1152 2433 0 3303
+ gosub ljing 1160 2433 0 3291
+ gosub ljing 1164 2433 0 3291
+ gosub ljing 1168 2433 0 3278
+ gosub ljing 1176 2433 0 3300
+
+ gosub ljing 1176 2436 0 3300
+ gosub ljing 1172 2436 0 3291
+ gosub ljing 1164 2436 0 3291
+ gosub ljing 1160 2436 0 3284
+ gosub ljing 1152 2436 0 3297
+ gosub ljing 1148 2436 0 3303
+ gosub ljing 1140 2436 5 3300
+ gosub ljing 1136 2436 5 3278
+ gosub ljing 1132 2436 5 3278
+ gosub ljing 1128 2436 5 3297
+ gosub ljing 1124 2436 5 3278
+ gosub ljing 1120 2436 5 3297
+ gosub ljing 1104 2436 10 3281
+ gosub ljing 1100 2436 10 3294
+ gosub ljing 1096 2436 10 3281
+ gosub ljing 1092 2436 5 3281
+ gosub ljing 1088 2436 5 3303
+ gosub ljing 1068 2436 0 3281
+ gosub ljing 1060 2436 0 3281
+ gosub ljing 1056 2436 0 3284
+ gosub ljing 1052 2436 0 3281
+
+ gosub ljing 1040 2439 5 3278
+ gosub ljing 1044 2439 0 3297
+ gosub ljing 1060 2439 0 3303
+ gosub ljing 1072 2439 0 3297
+ gosub ljing 1076 2439 5 3294
+ gosub ljing 1080 2439 5 3281
+ gosub ljing 1084 2439 5 3291
+ gosub ljing 1095 2439 5 3230
+ gosub ljing 1096 2439 5 3303
+ gosub ljing 1100 2439 10 3300
+ gosub ljing 1104 2439 10 3281
+ gosub ljing 1112 2439 10 3281
+ gosub ljing 1120 2439 5 3278
+ gosub ljing 1128 2439 5 3278
+ gosub ljing 1132 2439 5 3300
+ gosub ljing 1136 2439 5 3281
+ gosub ljing 1140 2439 5 3297
+ gosub ljing 1164 2439 0 3284
+
+ gosub ljing 1164 2442 0 3294
+ gosub ljing 1160 2442 0 3294
+ gosub ljing 1156 2442 0 3297
+ gosub ljing 1152 2442 0 3294
+ gosub ljing 1140 2442 5 3294
+ gosub ljing 1128 2442 5 3303
+ gosub ljing 1120 2442 10 3297
+ gosub ljing 1108 2442 10 3281
+ gosub ljing 1104 2442 10 3281
+ gosub ljing 1100 2442 4 3278
+ gosub ljing 1088 2442 5 3281
+ gosub ljing 1080 2442 5 3284
+ gosub ljing 1076 2442 0 3278
+ gosub ljing 1072 2442 0 3303
+ gosub ljing 1068 2442 0 3281
+ gosub ljing 1060 2442 0 3284
+
+ gosub ljing 1044 2445 0 3294
+ gosub ljing 1064 2445 0 3278
+ gosub ljing 1068 2445 0 3278
+ gosub ljing 1080 2445 5 3294
+ gosub ljing 1088 2445 5 3284
+ gosub ljing 1096 2445 5 3278
+ gosub ljing 1100 2445 10 3294
+ gosub ljing 1108 2445 10 3297
+ gosub ljing 1116 2445 10 3303
+ gosub ljing 1124 2445 5 3303
+ gosub ljing 1132 2445 5 3294
+ gosub ljing 1140 2445 5 3303
+ gosub ljing 1148 2445 0 3303
+ gosub ljing 1160 2445 0 3303
+ gosub ljing 1164 2445 0 3281
+ gosub ljing 1168 2445 0 3303
+ gosub ljing 1176 2445 0 3303
+
+ gosub ljing 1176 2448 0 3278
+ gosub ljing 1172 2448 0 3281
+ gosub ljing 1168 2448 0 3291
+ gosub ljing 1164 2448 0 3297
+ gosub ljing 1160 2448 0 3291
+ gosub ljing 1148 2448 0 3300
+ gosub ljing 1136 2448 5 3284
+ gosub ljing 1116 2448 10 3297
+ gosub ljing 1104 2448 10 3303
+ gosub ljing 1096 2448 5 3300
+ gosub ljing 1089 2448 5 3230
+ gosub ljing 1088 2448 5 3294
+ gosub ljing 1080 2448 5 3294
+ gosub ljing 1076 2448 0 3294
+ gosub ljing 1072 2448 0 3284
+ gosub ljing 1068 2448 0 3281
+ gosub ljing 1064 2448 0 3303
+ gosub ljing 1060 2448 0 3284
+ gosub ljing 1040 2448 5 3297
+
+ gosub ljing 1040 2451 5 3278
+ gosub ljing 1044 2451 0 3278
+ gosub ljing 1048 2451 0 3291
+ gosub ljing 1056 2451 0 3291
+ gosub ljing 1060 2451 0 3278
+ gosub ljing 1064 2451 0 3284
+ gosub ljing 1068 2451 0 3284
+ gosub ljing 1072 2451 0 3297
+ gosub ljing 1076 2451 0 3300
+ gosub ljing 1084 2451 5 3284
+ gosub ljing 1088 2451 5 3300
+ gosub ljing 1092 2451 5 3303
+ gosub ljing 1096 2451 5 3281
+ gosub ljing 1104 2451 10 3278
+ gosub ljing 1111 2451 10 3230
+ gosub ljing 1160 2451 0 3300
+ gosub ljing 1168 2451 0 3291
+ gosub ljing 1172 2451 0 3294
+
+ gosub ljing 1172 2454 0 3303
+ gosub ljing 1164 2454 0 3281
+ gosub ljing 1152 2454 0 3294
+ gosub ljing 1144 2454 0 3278
+ gosub ljing 1140 2454 5 3297
+ gosub ljing 1132 2454 5 3303
+ gosub ljing 1100 2454 5 3294
+ gosub ljing 1092 2454 5 3291
+ gosub ljing 1084 2454 5 3278
+ gosub ljing 1080 2454 5 3303
+ gosub ljing 1076 2454 0 3284
+ gosub ljing 1072 2454 0 3281
+ gosub ljing 1068 2454 0 3294
+ gosub ljing 1064 2454 0 3281
+ gosub ljing 1060 2454 0 3291
+ gosub ljing 1052 2454 0 3278
+
+ gosub ljing 1044 2457 5 3297
+ gosub ljing 1048 2457 0 3303
+ gosub ljing 1056 2457 0 3294
+ gosub ljing 1061 2457 0 3230
+ gosub ljing 1068 2457 0 3278
+ gosub ljing 1080 2457 5 3284
+ gosub ljing 1084 2457 5 3300
+ gosub ljing 1100 2457 5 3281
+ gosub ljing 1116 2457 10 3297
+ gosub ljing 1136 2457 5 3291
+ gosub ljing 1152 2457 0 3281
+ gosub ljing 1160 2457 0 3281
+ gosub ljing 1164 2457 0 3284
+ gosub ljing 1172 2457 0 3291
+ gosub ljing 1176 2457 0 3291
+
+ gosub recallBook %Mine
+goto start
+
+sub ljing
+  gosub check_disconnect
+  gosub check_weight
+  gosub check_stuck
+  move %1 %2 1 60s
+  ljagain:
+  finditem %ljtool
+  set #lobjectid #findid
+  event macro 17 0
+  target 10s
+  set #ltargetx %1
+  set #ltargety %2
+  set #ltargetz %3
+  set #ltargetkind 3
+  set #ltargettile %4
+  event macro 22 0
+  set %overtime #scnt + 10 ; change this if its too long, its a timeout if the #sysmsg check fails
+
+  while WHAT_DO_YOU in #sysmsg || N/A in #sysmsg && #scnt < %overtime
+  {
+  }
+
+  set %test #sysmsg
+  gosub scan
+  wait 5
+  if %nexttree || #scnt => %overtime
+  {
+     set %nexttree #false
+    return
+  }
+
+goto ljagain
+
+sub scan
+  scan:
+  if YOU_PUT_THE in %test
+     return
+  if YOU_HACK in %test
+     return
+  if YOU_CAN'T_REACH in %test
+  {
+      gosub recallBook %Mine
+  }
+  if THERE_IS_NOTHING in %test || IT_APPEARS in %test
+  {
+     set %nexttree #true
+     return
+  }
+return
+
+sub check_weight
+  if #weight >= %maxweight
+  {
+      gosub runeSpell 44 ; Mark rune
+      gosub recallBook %Home
+      gosub useItem %door
+      gosub useItem %chest
+      gosub moveOres
+      if %recallCount = 2
+      {
+          gosub recallBook %Mine
+          set %recallCount 0
+          goto start
+      }
+      gosub runeSpell 31 ; recall rune
+      set %recallCount 2
+  }
+return
+; ====== end ======
+sub moveOres
+    check:
+        finditem ZLK c_
+        if ! #findkind
+        {
+            set #findindex %tmp
+            Exevent Drag #findid #findstack
+            wait 10
+            exevent dropc %targetbag
+            wait 10
+            goto check
+        }
+        wait 2s
+return
+
+sub runeSpell
+    repeat
+    {
+        gosub meditate
+        set #LTARGETID %runeTmp
+        set #LTARGETKIND 1
+        event macro 15 %1
+        wait 10
+        event macro 22 0
+        wait 10s
+        gosub checkFizzle
+    }
+    until #result = 1
+return
+
+sub useItem
+    set #lobjectid %1
+    event macro 17 0
+    wait 5
+return
+
+sub checkFizzle
+    while #jindex > %jindex {
+        set %jindex %jindex + 1
+        scanjournal %jindex
+        if the_spell_fizzle in #journal
+        {
+            wait 10
+            return 0
+        }
+    }
+return 1
+
+sub recallBook
+    wait 5s
+    set %bookYoffset 55
+    set %y 15 * %1 + %bookYoffset
+        repeat
+        {
+            gosub meditate
+            set #LTARGETKIND 0
+            gosub useItem %runebook
+            set #contPosX 0
+            set #contPosY 0
+            contpos
+            wait 5
+            click 135 %y
+            wait 5s
+            gosub checkFizzle
+        }
+        until #result = 1
+return
+
+sub meditate
+    while #mana < 100
+    {
+        event macro 13 46
+        wait 3s
+    }
+return
+
+sub check_stuck
+    if #CHARPOSX = %lastx && #CHARPOSY = %lasty
+    {
+        set %lastcount %lastcount + 1
+        if %lastcount = 5
+        {
+            gosub recallBook %Mine
+        }
+    }
+    else
+    {
+        set %lastx #CHARPOSX
+        set %lasty #CHARPOSY
+        set %lastcount 0
+    }
+return
+
+sub check_disconnect
+    if #contkind = ECTB && #contname = waiting_gump
+    {
+        repeat
+        {
+            wait 1s
+            key enter
+            wait 1s
+            click 620 450
+        }
+        until #clilogged = 1
+    }
+return
